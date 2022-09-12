@@ -1,0 +1,11 @@
+@mixin subtitleMixin {
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+@mixin smallTextMixin {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+}
