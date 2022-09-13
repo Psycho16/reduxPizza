@@ -1,18 +1,23 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 
+import { Paths } from 'constants/routes'
+
 import logo from './logo.svg'
 import { Counter } from './features/counter/Counter'
 import './App.css'
 import IndexPage from './pages/Index'
+import CartPage from './pages/CartPage'
 
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<IndexPage />} />
+        <Route path={Paths.INDEX} element={<IndexPage />} />
+        <Route path={Paths.CART} element={<CartPage />} />
       </Routes>
+
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Counter />

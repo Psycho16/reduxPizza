@@ -1,0 +1,39 @@
+@import '../../../mixins/typography.scss';
+@import '../../../mixins/colors.scss';
+
+.title-root {
+  @include titleMixin();
+
+  color: $black;
+
+  display: flex;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.title-icon {
+  width: 29px;
+  height: 29px;
+  margin-right: 17px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  
+  * {
+    width: 29px;
+    max-height: 29px;
+    height: 29px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  svg {
+    path {
+      stroke: $black;
+    }
+  }
+}

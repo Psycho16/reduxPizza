@@ -4,7 +4,8 @@
 
 .header-root {
   
-  height: 130px;
+  height: 138px;
+  padding: 42px 0 40px;
   border-bottom: 1px solid $light-gray;
 }
 
@@ -13,8 +14,8 @@
   @include content-container();
   display: flex;
   justify-content: space-between;
-  
-  margin-top: 42px;
+  height: 55px;
+  // margin-top: 42px;
 }
 
 .logo-wrapper {
@@ -47,4 +48,44 @@
   height: 36px;
 
   margin-right: 17px;
+}
+
+.cart-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: $orange;
+
+  padding: 15px 23px;
+  border-radius: 30px;
+
+  min-width: 150px;
+}
+
+.cart-info-text {
+  @include defaultTextMixin();
+
+  color: $white;
+}
+
+.cart-info-divider {
+  height: 25px;
+  width: 1px;
+
+  background-color: $light-gray;
+}
+
+.cart-info-icon-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+
+
+.cart-icon {
+  width: 16px;
+  height: 16px;
+
+  margin-right: 8px;
 }
