@@ -38,7 +38,7 @@
 }
 
 .logo-text {
-  @include smallTextMixin();
+  @include logoTextMixin();
 
   color: $grey;
 }

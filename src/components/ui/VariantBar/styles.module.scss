@@ -1,0 +1,15 @@
+@import '../../../mixins/typography.scss';
+
+.variants-bar-root {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.variant {
+  @include variantBarTextMixin()
+}
+
+.variant-active {
+  background-color: red;
+}

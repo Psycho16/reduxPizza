@@ -1,0 +1,34 @@
+@import '../../../mixins/typography.scss';
+@import '../../../mixins/colors.scss';
+
+.pizza-card-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 10px;
+}
+
+@mixin pizzaImage {
+  width: 244px;
+  height: 244px;
+
+}
+.pizza-img {
+  @include pizzaImage();
+
+}
+
+.pizza-empty-img {
+  @include pizzaImage();
+
+  background-color: $light-gray;
+}
+
+
+.pizza-name {
+  @include subtitleMixin();
+
+  color: $black;
+  margin: 20px 0;
+
+}
