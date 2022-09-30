@@ -1,14 +1,14 @@
 import React from 'react'
 import classNames from 'classnames'
 
-import { pizzaSizes, pizzaTypes, PizzaInfo } from 'components/entities/PizzaCard/PizzaCard'
+import { PizzaSizeVariant, PizzaTypeVariant, PizzaInfo } from 'models/EntityModels/pizzas'
 import { PizzaSize, PizzaType } from 'models/apiModels/ApiEntities/pizzas'
 
 import styles from './styles.module.scss'
 
 
 interface Props {
-  variants: typeof pizzaSizes | typeof pizzaTypes
+  variants: PizzaSizeVariant[] | PizzaTypeVariant[]
   onSetVariant: (id: PizzaSize | PizzaType) => void
   currentPizzaInfo: PizzaInfo
 }

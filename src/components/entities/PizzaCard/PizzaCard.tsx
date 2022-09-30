@@ -2,53 +2,25 @@ import React, { useState } from 'react'
 
 import VariantBar from 'components/ui/VariantBar'
 import { PizzaSize, PizzaType } from 'models/apiModels/ApiEntities/pizzas'
+import { Pizza, PizzaInfo } from 'models/EntityModels/pizzas'
 
 import styles from './styles.module.scss'
 
 
 interface Props {
-  pizzaName: string
-  img?: string
+  pizza: Pizza
 }
 
-// export enum PizzaSize {
-//   Small = 'small',
-//   Medium = 'medium',
-//   Large = 'large'
-// }
-// export enum PizzaType {
-//   'thin',
-//   'default'
-// }
+const PizzaCard = ({ pizza }: Props) => {
+  const { image, name, price, availableSizes, availableTypes, id } = pizza
 
-export interface PizzaInfo {
-  size: PizzaSize
-  type: PizzaType
-}
+  const [currentPizza, setCurrentPizza] = useState<PizzaInfo>({
+    size: availableSizes[0].id,
+    type: availableTypes[0].id
+  })
 
-export const pizzaSizes = [
-  { id: PizzaSize.Small, value: '26 см' },
-  { id: PizzaSize.Medium, value: '30 см' },
-  { id: PizzaSize.Large, value: '35 см' }
-] as const
-
-export const pizzaTypes = [
-  { id: PizzaType.thin, value: 'тонкое' },
-  { id: PizzaType.default, value: 'традиционное' }
-] as const
-
-const PizzaCard = ({ img, pizzaName }: Props) => {
-  const [currentPizza, setCurrentPizza] = useState<PizzaInfo>({ size: PizzaSize.Small, type: PizzaType.thin })
-
-  // const setCurrentPizzaType = (type: PizzaType) => {
-  //   setCurrentPizza(prev => ({ size: prev.size, type }))
-  // }
-
-  // const setCurrentPizzaSize = (size: PizzaSize) => {
-  //   setCurrentPizza(prev => ({ size, type: prev.type }))
-  // }
   const setCurrentPizzaInfo = (id: PizzaSize | PizzaType) => {
-    if (id === PizzaType.thin || id == PizzaType.default) {
+    if (id === PizzaType.Thin || id == PizzaType.Default) {
       setCurrentPizza(prev => ({ size: prev.size, type: id }))
     }
 
@@ -61,14 +33,16 @@ const PizzaCard = ({ img, pizzaName }: Props) => {
 
   return (
     <div className={styles['pizza-card-root']}>
-      {img ? (
-        <img className={styles['pizza-img']} src={img} alt={pizzaName} />
+      {image ? (
+        <img className={styles['pizza-img']} src={image} alt={name} />
       ) : (
         <div className={styles['pizza-empty-img']} />
       )}
-      <h4 className={styles['pizza-name']}>{pizzaName}</h4>
-      <VariantBar variants={pizzaTypes} onSetVariant={setCurrentPizzaInfo} currentPizzaInfo={currentPizza} />
-      <VariantBar variants={pizzaSizes} onSetVariant={setCurrentPizzaInfo} currentPizzaInfo={currentPizza} />
+      <h4 className={styles['pizza-name']}>{name}</h4>
+      <VariantBar variants={availableTypes} onSetVariant={setCurrentPizzaInfo} currentPizzaInfo={currentPizza} />
+      <VariantBar variants={availableSizes} onSetVariant={setCurrentPizzaInfo} currentPizzaInfo={currentPizza} />
+
+      <button>От {price}Р</button>
     </div>
   )
 }

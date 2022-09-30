@@ -2,15 +2,64 @@ import React, { useEffect, useState } from 'react'
 
 import PageTitle from 'components/ui/PageTitle'
 import PizzaCard from 'components/entities/PizzaCard'
-import { http } from 'services/http'
 import { getPizzas } from 'api/pizzas'
 import { PizzasResponseDTO } from 'models/apiModels/pizzas'
-import { Pizza, Pizzas } from 'models/EntityModels/pizzas'
+import { Pizza, Pizzas, PizzaSizeVariant, PizzaTypeVariant } from 'models/EntityModels/pizzas'
+import { PizzaSize, PizzaType } from 'models/apiModels/ApiEntities/pizzas'
 
 import Layout from '../../components/layout'
 
 import styles from './styles.module.scss'
 
+
+const deserializeAvailableSize = (availableSizes: PizzaSize[]): PizzaSizeVariant[] => {
+  return availableSizes.map((availableSize) => {
+    if (availableSize === PizzaSize.Small)
+      return {
+        id: PizzaSize.Small,
+        value: '26 см'
+      }
+
+    if (availableSize === PizzaSize.Medium)
+      return {
+        id: PizzaSize.Medium,
+        value: '30 см'
+      }
+
+    if (availableSize === PizzaSize.Large)
+      return {
+        id: PizzaSize.Large,
+        value: '35 см'
+      }
+
+    return {
+      id: PizzaSize.Small,
+      value: '26 см'
+    }
+  })
+}
+
+const deserializeAvailableType = (availableTypes: PizzaType[]): PizzaTypeVariant[] => {
+  return availableTypes.map((availableType) => {
+    if (availableType === PizzaType.Default)
+      return {
+        id: PizzaType.Default,
+        value: 'традиционное'
+      }
+
+    if (availableType === PizzaType.Thin) {
+      return {
+        id: PizzaType.Thin,
+        value: 'тонкое'
+      }
+    }
+
+    return {
+      id: PizzaType.Default,
+      value: 'традиционное'
+    }
+  })
+}
 
 const deserializePizzas = (responseData: PizzasResponseDTO): Pizzas => {
   return {
@@ -18,8 +67,8 @@ const deserializePizzas = (responseData: PizzasResponseDTO): Pizzas => {
       const { availableSizes, availableTypes, image, name, price } = pizza
       return {
         id: pizza._id,
-        availableSizes,
-        availableTypes,
+        availableSizes: deserializeAvailableSize(availableSizes),
+        availableTypes: deserializeAvailableType(availableTypes),
         image,
         name,
         price
@@ -43,7 +92,7 @@ const IndexPage = () => {
         <PageTitle text="Все пиццы" />
         <div className={styles['pizzas-wrapper']}>
           {pizzas.map(pizza => (
-            <PizzaCard pizzaName={pizza.name} img={pizza.image} key={pizza.id} />
+            <PizzaCard pizza={pizza} key={pizza.id} />
           ))}
         </div>
       </div>

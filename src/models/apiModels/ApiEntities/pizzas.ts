@@ -13,6 +13,6 @@ export enum PizzaSize {
   Large = 'large'
 }
 export enum PizzaType {
-  'thin',
-  'default'
+  Thin = 'thin',
+  Default = 'default'
 }
