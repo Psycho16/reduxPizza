@@ -3,8 +3,11 @@ import React, { useState } from 'react'
 import VariantBar from 'components/ui/VariantBar'
 import { PizzaSize, PizzaType } from 'models/apiModels/ApiEntities/pizzas'
 import { Pizza, PizzaInfo } from 'models/EntityModels/pizzas'
+import Button from 'components/ui/Button'
 
 import styles from './styles.module.scss'
+import { allSizes, allTypes } from './consts'
+import { getPriceBySize } from './utils'
 
 
 interface Props {
@@ -32,18 +35,33 @@ const PizzaCard = ({ pizza }: Props) => {
   }
 
   return (
-    <div className={styles['pizza-card-root']}>
+    <article className={styles['pizza-card-root']}>
       {image ? (
         <img className={styles['pizza-img']} src={image} alt={name} />
       ) : (
         <div className={styles['pizza-empty-img']} />
       )}
       <h4 className={styles['pizza-name']}>{name}</h4>
-      <VariantBar variants={availableTypes} onSetVariant={setCurrentPizzaInfo} currentPizzaInfo={currentPizza} />
-      <VariantBar variants={availableSizes} onSetVariant={setCurrentPizzaInfo} currentPizzaInfo={currentPizza} />
+      <div className={styles['variant-bars-wrapper']}>
+        <VariantBar
+          variants={allTypes}
+          acceptedVariants={availableTypes}
+          onSetVariant={setCurrentPizzaInfo}
+          currentPizzaInfo={currentPizza}
+        />
+        <VariantBar
+          variants={allSizes}
+          acceptedVariants={availableSizes}
+          onSetVariant={setCurrentPizzaInfo}
+          currentPizzaInfo={currentPizza}
+        />
+      </div>
 
-      <button>От {price}Р</button>
-    </div>
+      <div className={styles['price-wrapper']}>
+        <span className={styles['price']}>{getPriceBySize(price, currentPizza.size)}Р</span>
+        <Button text={'Добавить'} onClick={() => console.info('добавили в корзину')} />
+      </div>
+    </article>
   )
 }
 

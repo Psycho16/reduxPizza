@@ -16,6 +16,7 @@
 .pizza-img {
   @include pizzaImage();
 
+  margin-left: 16px;
 }
 
 .pizza-empty-img {
@@ -31,4 +32,36 @@
   color: $black;
   margin: 20px 0;
 
+}
+
+.variant-bars-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: min(100%, 280px);
+
+  padding: 7px 6px;
+  margin-bottom: 17px;
+
+  border-radius: 10px;
+  
+  background-color: $medium-gray;
+
+  > :not(:last-child) { 
+    margin-bottom: 7px;
+  }
+}
+
+
+.price-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: min(100%, 280px);
+}
+
+.price {
+  @include priceMixin();
 }

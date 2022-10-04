@@ -4,6 +4,12 @@
   line-height: 24px;
 }
 
+@mixin priceMixin {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 28px;
+}
+
 @mixin logoTextMixin {
   font-weight: 400;
   font-size: 16px;

@@ -1,0 +1,9 @@
+@mixin resetButton {
+  padding: 0;
+  border: none;
+  font-family: inherit;
+  
+  cursor: pointer;
+
+  background-color: transparent;
+}

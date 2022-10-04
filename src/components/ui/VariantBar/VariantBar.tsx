@@ -9,17 +9,20 @@ import styles from './styles.module.scss'
 
 interface Props {
   variants: PizzaSizeVariant[] | PizzaTypeVariant[]
+  acceptedVariants: PizzaSizeVariant[] | PizzaTypeVariant[]
   onSetVariant: (id: PizzaSize | PizzaType) => void
   currentPizzaInfo: PizzaInfo
 }
-const VariantBar = ({ variants, onSetVariant, currentPizzaInfo }: Props) => {
+const VariantBar = ({ variants, acceptedVariants, onSetVariant, currentPizzaInfo }: Props) => {
+  const acceptedVariantIds = acceptedVariants.map(acceptedVariant => acceptedVariant.id)
   return (
     <div className={styles['variants-bar-root']}>
       {variants.slice(0, 3).map(variant => (
         <button
           className={classNames(
             styles['variant'],
-            currentPizzaInfo.size === variant.id || currentPizzaInfo.type === variant.id ? styles['variant-active'] : ''
+            !acceptedVariantIds.includes(variant.id) ? styles['variant-disabled'] : '',
+            currentPizzaInfo.size === variant.id || currentPizzaInfo.type === variant.id ? styles['variant-chosen'] : ''
           )}
           key={variant.id}
           onClick={() => onSetVariant(variant.id)}

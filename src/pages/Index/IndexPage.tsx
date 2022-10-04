@@ -29,7 +29,7 @@ const deserializeAvailableSize = (availableSizes: PizzaSize[]): PizzaSizeVariant
     if (availableSize === PizzaSize.Large)
       return {
         id: PizzaSize.Large,
-        value: '35 см'
+        value: '40 см'
       }
 
     return {
@@ -90,11 +90,11 @@ const IndexPage = () => {
     <Layout>
       <div className={styles['page-wrapper-root']}>
         <PageTitle text="Все пиццы" />
-        <div className={styles['pizzas-wrapper']}>
+        <section className={styles['pizzas-wrapper']}>
           {pizzas.map(pizza => (
             <PizzaCard pizza={pizza} key={pizza.id} />
           ))}
-        </div>
+        </section>
       </div>
     </Layout>
   )

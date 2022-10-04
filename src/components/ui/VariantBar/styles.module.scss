@@ -1,15 +1,43 @@
 @import '../../../mixins/typography.scss';
+@import '../../../mixins/button.scss';
+@import '../../../mixins/colors.scss';
 
 .variants-bar-root {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  width: calc(100%);
+
+  gap: 5px;
+
 }
 
 .variant {
-  @include variantBarTextMixin()
+  @include variantBarTextMixin();
+  @include resetButton();
+
+  padding: 5px 10px;
+  
+  border-radius: 5px;
+  background-color: transparent;
+
+  width: 100%;
+
+  &:hover {
+    background-color: $white;
+  }
+
+  transition: background-color .15s ease;
 }
 
-.variant-active {
-  background-color: red;
+.variant-chosen {
+  background-color: $white;
+}
+
+.variant-disabled {
+  opacity: .3;
+  pointer-events: none;
+  user-select: none;
+  
 }
