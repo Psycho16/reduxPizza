@@ -17,6 +17,7 @@ export interface Pizza {
   price: number
   id: string
   image: string
+  category: number
 }
 
 export interface Pizzas {
@@ -26,4 +27,9 @@ export interface Pizzas {
 export interface PizzaInfo {
   size: PizzaSize
   type: PizzaType
+}
+
+export interface SortPizzasType {
+  name: 'имени' | 'цене'
+  sortProperty: 'name' | 'price'
 }

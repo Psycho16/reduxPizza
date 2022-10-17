@@ -23,15 +23,13 @@ const Header = () => {
         </div>
 
         {!isCartPage && (
-          <Link to={Paths.CART}>
-            <a className={styles['cart-link']}>
-              <span className={styles['cart-info-text']}>520 Р</span>
-              <span className={styles['cart-info-divider']} />
-              <div className={styles['cart-info-icon-wrapper']}>
-                <img src={Icons.cartIcon} alt="pizza-logo" className={styles['cart-icon']} />
-                <span className={styles['cart-info-text']}>3</span>
-              </div>
-            </a>
+          <Link to={Paths.CART} className={styles['cart-link']}>
+            <span className={styles['cart-info-text']}>520 Р</span>
+            <span className={styles['cart-info-divider']} />
+            <div className={styles['cart-info-icon-wrapper']}>
+              <img src={Icons.cartIcon} alt="pizza-logo" className={styles['cart-icon']} />
+              <span className={styles['cart-info-text']}>3</span>
+            </div>
           </Link>
         )}
       </div>

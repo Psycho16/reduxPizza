@@ -1,12 +1,17 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
-
-import counterReducer from '../features/counter/counterSlice'
+import { pizzaApi } from 'slices/pizzasSlice/pizzaApi'
+import counterReducer from 'slices/counterSlice/counterSlice'
+import filterPizzasReducer from 'slices/filterPizzasSlice/filterPizzasSlice'
 
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer
-  }
+    counter: counterReducer,
+    filterPizzas: filterPizzasReducer,
+    [pizzaApi.reducerPath]: pizzaApi.reducer
+  },
+
+  middleware: getDefaultMiddlware => getDefaultMiddlware().concat(pizzaApi.middleware)
 })
 
 export type AppDispatch = typeof store.dispatch

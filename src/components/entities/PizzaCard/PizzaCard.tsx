@@ -59,7 +59,7 @@ const PizzaCard = ({ pizza }: Props) => {
 
       <div className={styles['price-wrapper']}>
         <span className={styles['price']}>{getPriceBySize(price, currentPizza.size)}Р</span>
-        <Button text={'Добавить'} onClick={() => console.info('добавили в корзину')} />
+        <Button text={'Добавить'} onClick={() => console.info(`добавили в корзину ${id} ${currentPizza.size}`)} />
       </div>
     </article>
   )

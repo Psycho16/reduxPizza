@@ -1,100 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import { useGetPizzasQuery } from 'slices/pizzasSlice/pizzaApi'
 
 import PageTitle from 'components/ui/PageTitle'
 import PizzaCard from 'components/entities/PizzaCard'
-import { getPizzas } from 'api/pizzas'
-import { PizzasResponseDTO } from 'models/apiModels/pizzas'
-import { Pizza, Pizzas, PizzaSizeVariant, PizzaTypeVariant } from 'models/EntityModels/pizzas'
-import { PizzaSize, PizzaType } from 'models/apiModels/ApiEntities/pizzas'
 
 import Layout from '../../components/layout'
 
 import styles from './styles.module.scss'
 
 
-const deserializeAvailableSize = (availableSizes: PizzaSize[]): PizzaSizeVariant[] => {
-  return availableSizes.map((availableSize) => {
-    if (availableSize === PizzaSize.Small)
-      return {
-        id: PizzaSize.Small,
-        value: '26 см'
-      }
-
-    if (availableSize === PizzaSize.Medium)
-      return {
-        id: PizzaSize.Medium,
-        value: '30 см'
-      }
-
-    if (availableSize === PizzaSize.Large)
-      return {
-        id: PizzaSize.Large,
-        value: '40 см'
-      }
-
-    return {
-      id: PizzaSize.Small,
-      value: '26 см'
-    }
-  })
-}
-
-const deserializeAvailableType = (availableTypes: PizzaType[]): PizzaTypeVariant[] => {
-  return availableTypes.map((availableType) => {
-    if (availableType === PizzaType.Default)
-      return {
-        id: PizzaType.Default,
-        value: 'традиционное'
-      }
-
-    if (availableType === PizzaType.Thin) {
-      return {
-        id: PizzaType.Thin,
-        value: 'тонкое'
-      }
-    }
-
-    return {
-      id: PizzaType.Default,
-      value: 'традиционное'
-    }
-  })
-}
-
-const deserializePizzas = (responseData: PizzasResponseDTO): Pizzas => {
-  return {
-    pizzas: responseData.pizzas.map((pizza) => {
-      const { availableSizes, availableTypes, image, name, price } = pizza
-      return {
-        id: pizza._id,
-        availableSizes: deserializeAvailableSize(availableSizes),
-        availableTypes: deserializeAvailableType(availableTypes),
-        image,
-        name,
-        price
-      }
-    })
-  }
-}
-
 const IndexPage = () => {
-  const [pizzas, setPizzas] = useState<Pizza[]>([])
-  useEffect(() => {
-    getPizzas().then((resp) => {
-      const deserializedPizzas = deserializePizzas(resp.data)
-      setPizzas(deserializedPizzas.pizzas)
-    })
-  }, [])
+  const { data, isLoading } = useGetPizzasQuery('pizzas')
 
   return (
     <Layout>
       <div className={styles['page-wrapper-root']}>
         <PageTitle text="Все пиццы" />
-        <section className={styles['pizzas-wrapper']}>
-          {pizzas.map(pizza => (
-            <PizzaCard pizza={pizza} key={pizza.id} />
-          ))}
-        </section>
+        {isLoading && <div>Загрузка</div>}
+        {!isLoading && (
+          <section className={styles['pizzas-wrapper']}>
+            {data?.pizzas.map(pizza => (
+              <PizzaCard pizza={pizza} key={pizza.id} />
+            ))}
+          </section>
+        )}
       </div>
     </Layout>
   )

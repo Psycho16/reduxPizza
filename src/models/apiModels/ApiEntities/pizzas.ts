@@ -4,7 +4,8 @@ export interface PizzaDTO {
   image: string
   name: string
   price: number
-  _id: string
+  id: string
+  category: number
 }
 
 export enum PizzaSize {

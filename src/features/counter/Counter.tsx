@@ -1,8 +1,15 @@
 import React, { useState } from 'react'
+import {
+  decrement,
+  increment,
+  incrementByAmount,
+  incrementAsync,
+  incrementIfOdd,
+  selectCount
+} from 'slices/counterSlice/counterSlice'
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks'
 
-import { decrement, increment, incrementByAmount, incrementAsync, incrementIfOdd, selectCount } from './counterSlice'
 import styles from './Counter.module.css'
 
 
