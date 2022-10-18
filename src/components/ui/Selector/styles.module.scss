@@ -1,0 +1,152 @@
+@import '../../../mixins/button.scss';
+@import '../../../mixins/colors.scss';
+@import '../../../mixins/typography.scss';
+
+
+.selector-root {
+  position: relative;
+  z-index: 1;
+
+  min-width: 104px;
+  width: fit-content;
+  height: 30px;
+
+  &--selected {
+    z-index: 10;
+  }
+
+}
+
+.elements-wrapper {
+  cursor: pointer;
+  width: fit-content;
+}
+
+.selected-item-wrapper {
+  position: relative;
+  
+  display: flex;
+  align-items: center;
+  
+  padding: 6px 20px;
+  width: max-content;
+  
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+
+  &--opened {
+    z-index: 10;
+  }
+}
+
+.selected-item-value {
+  @include variantBarTextMixin();
+  
+  position: relative;
+
+  padding-bottom: 3px;
+
+  margin-left: 12px;
+
+  color: $orange;
+
+  border-bottom: 1px $orange dashed;
+
+}
+
+.listbox {
+  position: absolute;
+  top: 48px;
+  right: 0;
+
+  opacity: 0;
+  padding: 15px 0;
+  pointer-events: none;
+
+  opacity: 0;
+  transform: translateY(-2rem);
+
+  background-color: $white;
+  
+  border-radius: 10px;
+  list-style-type: none;
+
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  
+  &--opened {
+    visibility: visible;
+    
+    opacity: 1;
+    transform: translateY(0);
+    
+    pointer-events: all;
+    
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.09);
+    
+    z-index: 10;
+  }
+}
+
+.variant-button {
+  @include resetButton();
+  
+  color: $black; 
+  min-width: 180px;
+  width: 100%;
+
+  text-align: start;
+  padding: 10px 6px 11px 14px;
+  margin: 0px;
+
+  :focus {
+    margin-bottom: '1px'
+  }
+
+  &:hover{
+    background-color: rgba(254, 95, 30, 0.1);
+  }
+
+  &--selected {
+    color: $orange;
+    font-weight: 700;
+    background-color: rgba(254, 95, 30, 0.05);
+  }
+}
+
+
+.sort-label {
+  @include defaultTextMixin();
+  
+  padding-bottom: 3px;
+}
+
+.selector-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-right: 10px;
+  
+  height: 6px;
+
+  transform: rotate(180deg);
+  transition: transform 0.2s ease;
+
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    height: 6px;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+
+  }
+
+  &--rotated {
+    transform: rotate(0deg);
+  }
+}
