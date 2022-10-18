@@ -1,4 +1,4 @@
-import { PizzaSize, PizzaType } from 'models/apiModels/ApiEntities/pizzas'
+import { CategoryDTO, PizzaSize, PizzaType } from 'models/apiModels/ApiEntities/pizzas'
 
 
 export interface PizzaSizeVariant {
@@ -17,7 +17,7 @@ export interface Pizza {
   price: number
   id: string
   image: string
-  category: number
+  category: Category
 }
 
 export interface Pizzas {
@@ -30,6 +30,8 @@ export interface PizzaInfo {
 }
 
 export interface SortPizzasType {
-  name: 'имени' | 'цене'
-  sortProperty: 'name' | 'price'
+  name: string
+  sortProperty: string
 }
+
+export interface Category extends CategoryDTO {}

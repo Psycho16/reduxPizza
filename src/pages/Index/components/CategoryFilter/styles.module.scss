@@ -1,0 +1,11 @@
+.category-filter-root {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  max-width: 70%;
+}
+
+.category-filter-root button {
+  text-transform: capitalize;
+}

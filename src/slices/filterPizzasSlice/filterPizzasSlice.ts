@@ -1,33 +1,68 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { pizzaApi } from 'slices/pizzasSlice/pizzaApi'
 
-import { SortPizzasType } from 'models/EntityModels/pizzas'
+import { Category, SortPizzasType } from 'models/EntityModels/pizzas'
 
 
 interface FilterPizzasSlice {
-  categoryId: number
+  categories: Category[]
+  category: Category
+  sortTypes: SortPizzasType[]
   sortType: SortPizzasType
 }
-const initialState: FilterPizzasSlice = {
-  categoryId: 0,
-  sortType: {
+
+const defaultCategory = {
+  categoryId: -1,
+  categoryName: 'все'
+}
+
+const defaultSortTypes = [
+  {
     name: 'имени',
     sortProperty: 'name'
-  }
+  },
+  { name: 'цене', sortProperty: 'price' }
+]
+
+const initialState: FilterPizzasSlice = {
+  categories: [defaultCategory],
+  category: defaultCategory,
+  sortTypes: defaultSortTypes,
+  sortType: defaultSortTypes[0]
 }
 
 const filterPizzasSlice = createSlice({
   name: 'filterPizzasSlice',
   initialState,
   reducers: {
-    setCategoryId(state, action) {
-      state.categoryId = action.payload
+    setCategory(state, action) {
+      state.category = action.payload
+    },
+    getCategories(state, action) {
+      state.categories = action.payload
+    },
+    resetCategory(state) {
+      state.category = defaultCategory
     },
     setSortType(state, action) {
       state.sortType = action.payload
     }
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(pizzaApi.endpoints.getPizzas.matchFulfilled, (state, { payload }) => {
+      state.categories = payload.pizzas.reduce(
+        (acc: Category[], currentPizza) => {
+          if (!acc.some(category => category.categoryId === currentPizza.category.categoryId)) {
+            acc.push(currentPizza.category)
+          }
+          return acc
+        },
+        [defaultCategory]
+      )
+    })
   }
 })
 
-export const { setCategoryId, setSortType } = filterPizzasSlice.actions
+export const { setCategory, resetCategory, setSortType, getCategories } = filterPizzasSlice.actions
 
 export default filterPizzasSlice.reducer

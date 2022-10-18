@@ -5,7 +5,7 @@ export interface PizzaDTO {
   name: string
   price: number
   id: string
-  category: number
+  category: CategoryDTO
 }
 
 export enum PizzaSize {
@@ -16,4 +16,9 @@ export enum PizzaSize {
 export enum PizzaType {
   Thin = 'thin',
   Default = 'default'
+}
+
+export interface CategoryDTO {
+  categoryId: number
+  categoryName: string
 }

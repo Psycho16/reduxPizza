@@ -77,7 +77,7 @@ export const pizzaApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: api.baseURL }),
   endpoints: build => ({
     getPizzas: build.query<Pizzas, string>({
-      query: () => 'pizzas',
+      query: (queryString = '') => `pizzas${queryString ? `${queryString}` : ''}`,
       transformResponse: (resp: PizzaDTO[]) => deserializePizzas(resp)
     })
   })

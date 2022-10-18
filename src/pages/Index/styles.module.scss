@@ -1,10 +1,19 @@
 .page-wrapper-root {
- 
+  opacity: 1;
+}
+.filters-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  margin-top: 40px;
 }
 
 .pizzas-wrapper {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(302px, auto));
+  justify-content: start;
+
   column-gap: 30px;
   row-gap: 65px;
 
