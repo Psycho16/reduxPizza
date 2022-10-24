@@ -1,5 +1,5 @@
 const Images = {
-  emptyCart: '/images/emptyCart.png'
+  emptyCart: '/reduxPizza/images/emptyCart.png'
 }
 
 export default Images
