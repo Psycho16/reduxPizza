@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/reduxPizza/static/css/main.db94954b.css",
+    "main.js": "/reduxPizza/static/js/main.98c78cb4.js",
+    "static/js/787.c0e2c82d.chunk.js": "/reduxPizza/static/js/787.c0e2c82d.chunk.js",
+    "index.html": "/reduxPizza/index.html",
+    "main.db94954b.css.map": "/reduxPizza/static/css/main.db94954b.css.map",
+    "main.98c78cb4.js.map": "/reduxPizza/static/js/main.98c78cb4.js.map",
+    "787.c0e2c82d.chunk.js.map": "/reduxPizza/static/js/787.c0e2c82d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.db94954b.css",
+    "static/js/main.98c78cb4.js"
+  ]
+}
