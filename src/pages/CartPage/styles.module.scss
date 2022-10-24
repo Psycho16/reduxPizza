@@ -1,0 +1,107 @@
+@import '../../mixins/colors.scss';
+@import '../../mixins/typography.scss';
+@import '../../mixins/button.scss';
+
+.cart-container {
+  max-width: 821px;
+  margin: 0 auto;
+}
+
+.clear-cart-button {
+  @include resetButton();
+
+  display: flex;
+  align-items: center;
+
+  color: $grey;
+
+  svg {
+    margin-right: 10px;
+
+    path {
+      stroke: $grey;
+    }
+  }
+}
+
+.heading-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pizzas {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  margin-top: 40px;
+}
+
+.total-wrapper {
+  @include priceMixin();
+
+  h4 {
+    font-size: inherit;
+    font-weight: 400;
+    line-height: inherit;
+  }
+}
+
+.decor {
+  font-weight: 700;
+}
+
+.price-decor {
+  color: $orange;
+}
+
+.back-link {
+  display: flex;
+  align-items: center;
+  
+  font-weight: 400;
+  
+  color: $grey;
+  border: 1px solid $grey;
+  background-color: $white;
+  
+  transition: border-color 0.2s ease, color 0.2s ease;
+
+  div {
+    height: 14px;
+    display: flex;
+  }
+
+  > div {
+    margin-right: 10px;
+
+
+    svg {
+      path {
+        transition: stroke 0.2s ease;
+        stroke: $grey;
+      }
+    }
+  }
+
+  &:hover {
+    background-color: $light-gray;
+    color: $black;
+    border-color: $black;
+
+    svg {
+      path {
+        stroke: $black;
+      }
+    }
+  }
+
+}

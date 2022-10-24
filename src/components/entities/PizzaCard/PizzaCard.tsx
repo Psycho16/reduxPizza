@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useAppDispatch } from 'app/hooks'
+import { addPizzaToCart } from 'slices/cartSlice/cartSlice'
 
 import VariantBar from 'components/ui/VariantBar'
 import { PizzaSize, PizzaType } from 'models/apiModels/ApiEntities/pizzas'
@@ -16,6 +18,7 @@ interface Props {
 
 const PizzaCard = ({ pizza }: Props) => {
   const { image, name, price, availableSizes, availableTypes, id } = pizza
+  const dispatch = useAppDispatch()
 
   const [currentPizza, setCurrentPizza] = useState<PizzaInfo>({
     size: availableSizes[0].id,
@@ -32,6 +35,24 @@ const PizzaCard = ({ pizza }: Props) => {
     }
 
     return
+  }
+
+  const onAddPizzaToCart = () => {
+    const size = currentPizza.size
+    const type = currentPizza.type
+    const calculatedPrice = getPriceBySize(price, size)
+
+    dispatch(
+      addPizzaToCart({
+        size,
+        type,
+        name,
+        price: calculatedPrice,
+        image,
+        id,
+        amount: 1
+      })
+    )
   }
 
   return (
@@ -59,7 +80,7 @@ const PizzaCard = ({ pizza }: Props) => {
 
       <div className={styles['price-wrapper']}>
         <span className={styles['price']}>{getPriceBySize(price, currentPizza.size)}Р</span>
-        <Button text={'Добавить'} onClick={() => console.info(`добавили в корзину ${id} ${currentPizza.size}`)} />
+        <Button text={'Добавить'} onClick={onAddPizzaToCart} />
       </div>
     </article>
   )

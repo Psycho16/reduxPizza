@@ -1,0 +1,131 @@
+@import '../../../../mixins/colors.scss';
+@import '../../../../mixins/button.scss';
+@import '../../../../mixins/typography.scss';
+
+
+.pizza-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 30px 0;
+
+  border-top: 1px solid $light-gray;
+}
+
+.pizza-img {
+  width: 80px;
+}
+
+.pizza-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  margin-left: 15px;
+}
+
+
+.pizza-info {
+  color: $grey;
+}
+
+.counter-button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-width: 102px;
+  margin-left: 68px;
+}
+
+.pizza-card-button {
+  @include resetButton();
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  width: 30px;
+  height: 30px;
+  background-color: $white;
+  
+  border-radius: 50%;
+
+  transition: background-color 0.2s ease;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      path {
+        fill: $white;
+        transition: fill 0.2s ease;
+      }
+    }
+  }
+}
+
+.counter-button {
+
+  border: 1px solid $orange;
+
+  
+  &:hover {
+    background-color: $orange;
+
+    div {
+
+      svg {
+        path {
+          fill: $white;
+        }
+      }
+    }
+  }
+
+  div {
+    
+    svg {
+      path {
+        transition: fill 0.2s ease;
+        fill: $orange;
+      }
+    }
+  }
+}
+
+.price {
+  margin-left: 93px;
+}
+
+.delete-pizza-button {
+  border: 1px solid $grey;
+
+  
+  &:hover {
+    background-color: $grey;
+
+    div {
+
+      svg {
+        path {
+          fill: $white;
+        }
+      }
+    }
+  }
+
+  div {
+
+    svg {
+      path {
+        transition: fill 0.2s ease;
+        fill: $grey;
+      }
+    }
+    
+  }
+}

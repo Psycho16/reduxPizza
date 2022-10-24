@@ -1,6 +1,7 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import { pizzaApi } from 'slices/pizzasSlice/pizzaApi'
 import counterReducer from 'slices/counterSlice/counterSlice'
+import cartReducer from 'slices/cartSlice/cartSlice'
 import filterPizzasReducer from 'slices/filterPizzasSlice/filterPizzasSlice'
 
 
@@ -8,6 +9,7 @@ export const store = configureStore({
   reducer: {
     counter: counterReducer,
     filterPizzas: filterPizzasReducer,
+    cart: cartReducer,
     [pizzaApi.reducerPath]: pizzaApi.reducer
   },
 

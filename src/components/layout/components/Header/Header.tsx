@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useAppSelector } from 'app/hooks'
 
 import Icons from 'constants/Icons'
 import { Paths } from 'constants/routes'
@@ -10,6 +11,8 @@ import styles from './styles.module.scss'
 const Header = () => {
   const location = useLocation()
   const isCartPage = location.pathname === Paths.CART
+
+  const { totalCount, totalPrice } = useAppSelector(state => state.cart)
 
   return (
     <header className={styles['header-root']}>
@@ -24,11 +27,11 @@ const Header = () => {
 
         {!isCartPage && (
           <Link to={Paths.CART} className={styles['cart-link']}>
-            <span className={styles['cart-info-text']}>520 Р</span>
+            <span className={styles['cart-info-text']}>{totalPrice} Р</span>
             <span className={styles['cart-info-divider']} />
             <div className={styles['cart-info-icon-wrapper']}>
               <img src={Icons.cartIcon} alt="pizza-logo" className={styles['cart-icon']} />
-              <span className={styles['cart-info-text']}>3</span>
+              <span className={styles['cart-info-text']}>{totalCount}</span>
             </div>
           </Link>
         )}

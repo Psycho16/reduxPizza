@@ -1,0 +1,71 @@
+@import '../../../../mixins/colors.scss';
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  height: calc(100vh - 138px);
+  max-width: 547px;
+
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 10px;
+
+}
+
+.description {
+  margin-bottom: 47px;
+}
+
+.img {
+  margin-bottom: 74px;
+}
+
+.back-link {
+  display: flex;
+  align-items: center;
+  
+  font-weight: 400;
+  
+  color: $grey;
+  border: 1px solid $grey;
+  background-color: $white;
+  
+  transition: border-color 0.2s ease, color 0.2s ease;
+
+  div {
+    height: 14px;
+    display: flex;
+  }
+
+  > div {
+    margin-right: 10px;
+
+
+    svg {
+      path {
+        transition: stroke 0.2s ease;
+        stroke: $grey;
+      }
+    }
+  }
+
+  &:hover {
+    background-color: $light-gray;
+    color: $black;
+    border-color: $black;
+
+    svg {
+      path {
+        stroke: $black;
+      }
+    }
+  }
+
+}

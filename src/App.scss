@@ -1,0 +1,37 @@
+@import 'mixins/typography.scss';
+@import 'mixins/button.scss';
+
+body {
+  width: 100vw;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1,h2,h3,h4,h5,h6,p {
+  margin: 0;
+}
+
+
+.button {
+  @include resetButton();
+  @include defaultTextMixin();
+
+  
+  height: 50px;
+  padding: 10px 25px;
+  border-radius: 30px;
+
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+
+}
+
+

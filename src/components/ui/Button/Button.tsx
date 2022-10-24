@@ -17,7 +17,7 @@ const Button = ({ text, onClick, isDisabled, variant = 'orange', active = false 
     <button
       disabled={isDisabled}
       className={classNames(
-        styles['button-root'],
+        'button',
         variant === 'orange' && styles['orange-button'],
         variant === 'gray' && styles['gray-button'],
         active && styles['gray-button--active']

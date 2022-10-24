@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { useGetPizzasQuery } from 'slices/pizzasSlice/pizzaApi'
 import { useAppSelector } from 'app/hooks'
 

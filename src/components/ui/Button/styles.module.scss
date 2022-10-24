@@ -1,18 +1,4 @@
-@import '../../../mixins/button.scss';
 @import '../../../mixins/colors.scss';
-@import '../../../mixins/typography.scss';
-
-.button-root {
-  @include resetButton();
-  @include defaultTextMixin();
-
-  height: 50px;
-  padding: 10px 25px;
-  border-radius: 30px;
-
-  transition: background-color .15s ease, color .15s ease, border-color .15s ease;
-
-}
 
 
 .orange-button {
