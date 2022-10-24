@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useAppDispatch } from 'app/hooks'
 import { addPizzaToCart } from 'slices/cartSlice/cartSlice'
+import toast from 'react-hot-toast'
 
 import VariantBar from 'components/ui/VariantBar'
 import { PizzaSize, PizzaType } from 'models/apiModels/ApiEntities/pizzas'
@@ -41,6 +42,8 @@ const PizzaCard = ({ pizza }: Props) => {
     const size = currentPizza.size
     const type = currentPizza.type
     const calculatedPrice = getPriceBySize(price, size)
+
+    toast.success(`Пицца "${name}" успешно добавлена в корзину`)
 
     dispatch(
       addPizzaToCart({

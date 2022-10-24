@@ -1,10 +1,16 @@
 @import 'mixins/typography.scss';
 @import 'mixins/button.scss';
 
+
 body {
+  overflow-x: hidden;
+}
+
+.App {
   width: 100vw;
   margin: 0;
   overflow-x: hidden;
+  
 }
 
 * {

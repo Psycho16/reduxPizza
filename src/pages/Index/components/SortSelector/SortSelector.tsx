@@ -28,7 +28,7 @@ const SortSelector = () => {
       items={serializedSortTypes}
       selectedItem={serializedSelectedSortType}
       setItem={onSetSortType}
-      sortLabel={'Сортировка по'}
+      sortLabel={'Отсортировать по'}
     />
   )
 }

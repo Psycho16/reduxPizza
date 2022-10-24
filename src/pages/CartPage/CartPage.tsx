@@ -3,6 +3,7 @@ import { clearCart } from 'slices/cartSlice/cartSlice'
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 import { ReactSVG } from 'react-svg'
+import toast from 'react-hot-toast'
 
 import Layout from 'components/layout'
 import PageTitle from 'components/ui/PageTitle'
@@ -55,7 +56,7 @@ const CartPage = () => {
               Вернуться на главную
             </Link>
 
-            <Button onClick={() => console.log('оплатить сейчас')} text={'оплатить сейчас'} />
+            <Button onClick={() => toast.success('Переход на страницу оплаты')} text={'оплатить сейчас'} />
           </div>
         </div>
       )}

@@ -1,4 +1,5 @@
 @import '../../../../mixins/colors.scss';
+@import '../../../../mixins/typography.scss';
 
 .wrapper {
   display: flex;
@@ -15,12 +16,15 @@
 }
 
 .title {
+  @include titleMixin();
+  
   margin-bottom: 10px;
 
 }
 
 .description {
   margin-bottom: 47px;
+  color: $grey;
 }
 
 .img {
@@ -37,24 +41,8 @@
   border: 1px solid $grey;
   background-color: $white;
   
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
 
-  div {
-    height: 14px;
-    display: flex;
-  }
-
-  > div {
-    margin-right: 10px;
-
-
-    svg {
-      path {
-        transition: stroke 0.2s ease;
-        stroke: $grey;
-      }
-    }
-  }
 
   &:hover {
     background-color: $light-gray;
