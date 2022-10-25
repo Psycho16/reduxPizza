@@ -76,8 +76,13 @@ export const pizzaApi = createApi({
   reducerPath: 'pizzaApi',
   baseQuery: fetchBaseQuery({ baseUrl: api.baseURL }),
   endpoints: build => ({
-    getPizzas: build.query<Pizzas, string>({
-      query: (queryString = '') => `pizzas${queryString ? `${queryString}` : ''}`,
+    getPizzas: build.query<Pizzas, { sortType?: string }>({
+      query: ({ sortType }) => ({
+        url: `/pizzas`,
+        params: {
+          sortBy: sortType
+        }
+      }),
       transformResponse: (resp: PizzaDTO[]) => deserializePizzas(resp)
     })
   })

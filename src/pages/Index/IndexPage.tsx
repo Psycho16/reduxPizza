@@ -11,14 +11,10 @@ import CategoryFilter from './components/CategoryFilter'
 import SortSelector from './components/SortSelector'
 
 
-const getPizzasQuery = (queryParams: { sortType?: string }) => {
-  return `?${queryParams.sortType ? `sortBy=${queryParams.sortType}&` : ''}`
-}
-
 const IndexPage = () => {
   const activeCategory = useAppSelector(state => state.filterPizzas.category)
   const sortType = useAppSelector(state => state.filterPizzas.sortType)
-  const { data, isLoading } = useGetPizzasQuery(getPizzasQuery({ sortType: sortType.sortProperty }))
+  const { data, isLoading } = useGetPizzasQuery({ sortType: sortType.sortProperty })
 
   return (
     <Layout>
