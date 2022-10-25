@@ -5,3 +5,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Getting inspired by [Figma](https://www.figma.com/file/wWUnQwvRDWBfPx1v1pCAfO/React-Pizza) designed by [ArchakovBlog](https://www.youtube.com/c/ArchakovBlog)
 
+
+You can check application here - https://psycho16.github.io/reduxPizza
