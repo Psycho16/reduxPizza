@@ -10,7 +10,7 @@ import styles from './styles.module.scss'
 
 const Header = () => {
   const location = useLocation()
-  const isCartPage = location.pathname === Paths.CART
+  const showCart = location.pathname === Paths.INDEX
 
   const { totalCount, totalPrice } = useAppSelector(state => state.cart)
 
@@ -27,7 +27,7 @@ const Header = () => {
           </div>
         </Link>
 
-        {!isCartPage && (
+        {showCart && (
           <Link to={Paths.CART} className={styles['cart-link']}>
             <span className={styles['cart-info-text']}>{totalPrice} Р</span>
             <span className={styles['cart-info-divider']} />

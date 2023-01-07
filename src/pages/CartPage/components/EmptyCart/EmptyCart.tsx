@@ -15,7 +15,7 @@ const EmptyCart = () => {
       <p className={styles['description']}>
         Вероятней всего, вы не добавляли пиццу в корзину. Для того, чтобы заказать пиццу, перейдите на главную страницу.
       </p>
-      <img src={Images.emptyCart} alt="Пустая корзина" className={styles['img']} />
+      <img src={Images.emptyCart} alt="Пустая корзина" className={styles['img']} width={300} height={255} />
 
       <Link to={Paths.INDEX} className={classNames('button', styles['back-link'])}>
         На главную

@@ -40,4 +40,12 @@ h1,h2,h3,h4,h5,h6,p {
 
 }
 
+.visually-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
 
