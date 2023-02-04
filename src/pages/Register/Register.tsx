@@ -9,6 +9,7 @@ import PageTitle from 'components/ui/PageTitle'
 import Input from 'components/ui/Input'
 
 import Icons from 'constants/Icons'
+import { Regexs } from 'constants/regexs'
 
 import styles from './styles.module.scss'
 
@@ -17,15 +18,11 @@ interface RegisterFormValues {
   name: string
   surname: string
   email: string
-  // birthday: string
-  // gender: 'male' | 'female'
-  // phoneNumber?: string
 }
-interface RegisterFormValuesDTO {
+export interface RegisterFormValuesDTO {
   name: string
   surname: string
   email: string
-  // birthday: string //Date format - 19.20.21
 }
 
 const RegisterPage = () => {
@@ -35,23 +32,25 @@ const RegisterPage = () => {
     formState: { errors },
     reset
   } = useForm<RegisterFormValues>()
-  const [createUser, { isError, isLoading, isSuccess }] = useCreateUserMutation()
+  const [createUser, { isLoading }] = useCreateUserMutation()
 
   const onSubmit = async (data: RegisterFormValues) => {
     try {
-      await createUser(data).unwrap()
-      reset()
-      toast.success('Вы успешно зарегистрировались')
+      await createUser(data)
+        .unwrap()
+        .then((resp) => {
+          reset()
+          toast.success(`Пользователь ${resp.name} успешно зарегистрирован`)
+        })
     } catch {
       toast.error(`При регистрации произошла ошибка`)
     }
   }
 
-  React.useEffect(() => {
-    console.log('error', isError, 'loading', isLoading, 'success', isSuccess)
-  }, [isError, isLoading, isSuccess])
   const onError = () => {
-    console.log(errors)
+    Object.entries(errors).forEach(([name, error]) => {
+      toast.error(`${name} - ${error.message}` || `Ошибка в поле ${name}`)
+    })
   }
 
   return (
@@ -60,12 +59,35 @@ const RegisterPage = () => {
         <header className={styles['heading-wrapper']}>
           <PageTitle text="Регистрация" icon={Icons.cartIcon} />
         </header>
-        <form onSubmit={handleSubmit(onSubmit, onError)}>
-          <Input register={register('name', { required: 'обязательное поле' })} />
-          <Input register={register('surname', { required: 'обязательное поле' })} />
-          <Input register={register('email', { required: 'обязательное поле' })} />
-          {/* <Input register={register('birthday')} /> */}
-          <Button onClick={handleSubmit(onSubmit, onError)} text={'Зарегистрироваться'} />
+        <form onSubmit={handleSubmit(onSubmit, onError)} className={styles['form']}>
+          <Input
+            fieldName={'Имя'}
+            placeholder={'Александр'}
+            register={register('name', { required: 'обязательное поле' })}
+          />
+          <Input
+            fieldName={'Фамилия'}
+            placeholder={'Иванов'}
+            register={register('surname', { required: 'обязательное поле' })}
+          />
+          <Input
+            placeholder={'pizza@mail.com'}
+            fieldName={'email'}
+            register={register('email', {
+              required: 'обязательное поле',
+              pattern: {
+                value: Regexs.EMAIL,
+                message: 'Пожалуйста введите корректный адрес электронной почты'
+              }
+            })}
+          />
+
+          <Button
+            onClick={handleSubmit(onSubmit, onError)}
+            text={'Зарегистрироваться'}
+            isDisabled={isLoading}
+            className={styles['submit-button']}
+          />
         </form>
       </div>
     </Layout>

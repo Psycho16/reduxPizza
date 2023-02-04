@@ -15,7 +15,6 @@
   display: flex;
   justify-content: space-between;
   height: 55px;
-  // margin-top: 42px;
 }
 
 .logo-wrapper {
@@ -48,6 +47,24 @@
   height: 36px;
 
   margin-right: 17px;
+}
+
+.sublinks-wrapper {
+  display: flex;
+  align-items: center;
+
+  column-gap: 30px;
+}
+.registration-link {
+  @include logoTextMixin();
+
+  color: $grey;
+  
+  transition: color 150ms ease;
+
+  &:hover {
+    color: $black;
+  }
 }
 
 .cart-link {

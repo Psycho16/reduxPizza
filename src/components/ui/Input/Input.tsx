@@ -6,29 +6,29 @@ import styles from './styles.module.scss'
 
 interface Props {
   register: UseFormRegisterReturn
-  errorMessage?: string
-  placeholder?: string
+  fieldName: string
+  placeholder: string
   className?: string
-  type?: 'text' | 'number' | 'email'
+  type?: 'text' | 'email'
   value?: string | number
   isDisabled?: boolean
   isRequired?: boolean
   onClearError?: () => void
 }
 
-const Input = ({ register, placeholder, type, isDisabled, className, value, errorMessage }: Props) => {
+const Input = ({ register, placeholder, fieldName, type, isDisabled, className, value }: Props) => {
   return (
     <label className={`${styles['label']} ${className}`}>
-      <span className={'visually-hidden'}>{placeholder}</span>
+      <h4 className={styles['field-name']}>{fieldName}</h4>
       <input
         type={type}
         placeholder={placeholder}
         value={value}
         disabled={isDisabled}
         autoComplete="off"
+        className={styles['input']}
         {...register}
       />
-      {errorMessage && <span>Ошибка</span>}
     </label>
   )
 }

@@ -1,3 +1,63 @@
+@import '../../../mixins/colors.scss';
+@import '../../../mixins/typography.scss';
+
+@mixin inputPlaceholder{
+  opacity: .5;
+}
+
 .label {
+  display: block;
+  position: relative;
   
+  cursor: text;
+  width: min(100%, 285px);
+}
+
+.field-name {
+  margin-bottom: 14px;
+  font-weight: 700;
+
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.input {
+  @include defaultTextMixin();
+  width: 100%;
+  height: 60px;
+  padding: 5px 20px;
+  
+  border: none;
+  border-radius: 10px;
+  background-color: $medium-gray;
+
+  outline: 1px solid transparent;
+
+
+  transition: outline-color 300ms ease;
+
+  &:hover {
+    outline-color: $grey;
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline-color: $black;
+  }
+
+  &::-webkit-input-placeholder{
+    @include inputPlaceholder();
+  }
+  
+  &::-moz-placeholder {
+    @include inputPlaceholder();
+  }
+
+  &:-moz-placeholder {
+    @include inputPlaceholder();
+  }
+
+  &:-ms-input-placeholder {
+    @include inputPlaceholder();
+  }
 }

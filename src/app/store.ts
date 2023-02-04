@@ -3,6 +3,7 @@ import { pizzaApi } from 'slices/pizzasSlice/pizzaApi'
 import counterReducer from 'slices/counterSlice/counterSlice'
 import cartReducer from 'slices/cartSlice/cartSlice'
 import filterPizzasReducer from 'slices/filterPizzasSlice/filterPizzasSlice'
+import { registerApi } from 'slices/registerSlice/registerApi'
 
 
 export const store = configureStore({
@@ -10,6 +11,7 @@ export const store = configureStore({
     counter: counterReducer,
     filterPizzas: filterPizzasReducer,
     cart: cartReducer,
+    registerApi: registerApi.reducer,
     [pizzaApi.reducerPath]: pizzaApi.reducer
   },
 

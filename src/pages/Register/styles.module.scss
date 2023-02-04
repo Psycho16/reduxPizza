@@ -2,3 +2,18 @@
   max-width: 821px;
   margin: 0 auto;
 }
+
+.form {
+  max-width: 821px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 20px;
+}
+
+.submit-button {
+  margin-top: 50px;
+  align-self: center;
+}
