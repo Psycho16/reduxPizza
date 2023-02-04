@@ -10,9 +10,10 @@ interface Props {
   isDisabled?: boolean
   variant?: 'gray' | 'orange'
   active?: boolean
+  className?: string
 }
 
-const Button = ({ text, onClick, isDisabled, variant = 'orange', active = false }: Props) => {
+const Button = ({ text, onClick, isDisabled, variant = 'orange', active = false, className }: Props) => {
   return (
     <button
       disabled={isDisabled}
@@ -20,7 +21,8 @@ const Button = ({ text, onClick, isDisabled, variant = 'orange', active = false 
         'button',
         variant === 'orange' && styles['orange-button'],
         variant === 'gray' && styles['gray-button'],
-        active && styles['gray-button--active']
+        active && styles['gray-button--active'],
+        className
       )}
       onClick={onClick}
     >

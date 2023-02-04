@@ -1,4 +1,5 @@
 export enum Paths {
   INDEX = '/',
-  CART = '/cart'
+  CART = '/cart',
+  REGISTER = '/register'
 }

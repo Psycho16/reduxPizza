@@ -10,7 +10,7 @@ import styles from './styles.module.scss'
 
 const Header = () => {
   const location = useLocation()
-  const isCartPage = location.pathname === Paths.CART
+  const showCart = location.pathname === Paths.INDEX
 
   const { totalCount, totalPrice } = useAppSelector(state => state.cart)
 
@@ -27,16 +27,22 @@ const Header = () => {
           </div>
         </Link>
 
-        {!isCartPage && (
-          <Link to={Paths.CART} className={styles['cart-link']}>
-            <span className={styles['cart-info-text']}>{totalPrice} Р</span>
-            <span className={styles['cart-info-divider']} />
-            <div className={styles['cart-info-icon-wrapper']}>
-              <img src={Icons.cartIcon} alt="pizza-logo" className={styles['cart-icon']} />
-              <span className={styles['cart-info-text']}>{totalCount}</span>
-            </div>
+        <div className={styles['sublinks-wrapper']}>
+          <Link to={Paths.REGISTER}>
+            <h3 className={styles['registration-link']}>Регистрация</h3>
           </Link>
-        )}
+
+          {showCart && (
+            <Link to={Paths.CART} className={styles['cart-link']}>
+              <span className={styles['cart-info-text']}>{totalPrice} Р</span>
+              <span className={styles['cart-info-divider']} />
+              <div className={styles['cart-info-icon-wrapper']}>
+                <img src={Icons.cartIcon} alt="pizza-logo" className={styles['cart-icon']} />
+                <span className={styles['cart-info-text']}>{totalCount}</span>
+              </div>
+            </Link>
+          )}
+        </div>
       </div>
     </header>
   )

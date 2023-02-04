@@ -36,7 +36,7 @@
     "camelcase": [0, { "properties": "always" }],
     "jsx-quotes": 2,
     "linebreak-style": [0, "unix"],
-    "max-len": [2, 120, 2],
+    "max-len": [2, 150, 2],
     "no-await-in-loop": 2,
     "no-console": [
       1,

@@ -9,8 +9,7 @@ import styles from './styles.module.scss'
 
 
 const CategoryFilter = () => {
-  const categories = useAppSelector(state => state.filterPizzas.categories)
-  const activeCategory = useAppSelector(state => state.filterPizzas.category)
+  const { categories, category: activeCategory } = useAppSelector(state => state.filterPizzas)
   const dispatch = useAppDispatch()
 
   const onSetCategory = (category: Category) => {
